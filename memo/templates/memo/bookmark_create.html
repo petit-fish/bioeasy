@@ -1,0 +1,103 @@
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+    body{
+      background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    #send_form{
+      font-family: 'Caveat', cursive;
+      font-size: 17px;
+      text-align:center;
+      width: 80px;
+      position: fixed;
+      left: 160px;
+      top: 140px;
+
+    }
+
+    #title{
+      font-family: 'Caveat', cursive;
+      font-size: 15px;
+      text-align:center;
+      width: 390px;
+
+      position: fixed;
+      left: 6px;
+      top: 70px;
+    }
+</style>
+
+
+ <script type="text/javascript">
+ 		    $(function() {
+
+            $('#send_form').submit(function(e) {
+                // 원래의 동작 금지(ex. 링크 클릭하면 주소 이동 금지)
+                e.preventDefault();
+                data = $(this).serialize
+                // $(this) : 해당 이벤트 발생된 주체
+                // serialize : 데이트 전송 편하도록 직렬화
+
+                // ajax로 데이터 전송
+                $.ajax({
+                    url: "{% url 'add_bookmark' %}", // ajax로 데이터 교환할 페이지 주소
+                    method: "POST",
+                    data: data
+                }).done(function() {
+                    alert(data.message);
+                });
+                return false;
+            });
+        });
+
+        /*
+        데이터를 전송하는 페이지(HTML), 데이터를 전송받는 페이지(django view)
+        HTML - 회원가입, 좋아요 데이터 전송
+        -> 장고측 뷰가 데이터를 받아 모델 처리, 로직 처리
+        -> 모델처리가 완료되면 메시지, 혹은 처리 결과 데이터를 다시 HTML로 전송
+        -> HTML은 응답받은 데이터를 가지고 화면에 정보 출력
+
+        $.ajax({
+            url: "클라이언트가 요청 보낼 서버의 URL 주소",
+            method:"POST",          // HTTP 요청 방식(GET, POST)
+            type: "json",           // 서버에서 보내줄 데이터의 타입(default값으로 json으로 되어있다.)
+            data: {name: "홍길동"}   // HTTP 요청과 함께 서버로 보낼 데이터
+
+        }).done(function(data) {    // HTTP 요청 성공 시, 요청한 데이터가 done() 메소드로 전달
+
+        }).fail(function(xhr, data) {     // HTTP 요청 실패 시, 오류와 상태에 관한 정보가 fail() 메소드로 전달
+
+        }).always(function(xhr, data) {   // HTTP 요청의 성공여부와는 상관없이 언제나 always()메소드 실행
+
+        });
+        출처: [조누스의 걸음마 개발 로그] https://chohyeonkeun.github.io/2019/05/10/190510-django-Ajax/
+        */
+
+
+
+        function getText(){
+            document.getElementById("pmc_id").value = opener.document.getElementById("theid").value;
+        }
+   </script>
+
+
+
+
+</head>
+<br><br><br>
+
+
+<form action="add_bookmark" method="POST" class="post-form">
+        {% csrf_token %}
+        <input  type="hidden" name="pmc_id" id="pmc_id" class="form-control form-control-sm" type="text"/>
+		<input  name="title" id="title" class="form-control form-control-sm" placeholder="The title" type="text"/>
+    {% load static %}
+        <button type="submit" onclick="getText()" id="send_form" class="btn btn-secondary">Add</button>
+</form>

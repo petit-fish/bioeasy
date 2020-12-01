@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,300&display=swap');
+        body{
+          background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          font-family: 'Work Sans', sans-serif;
+        }
+        .post_title{
+            background-color: rgba( 255, 255, 255, 0.3 );
+            font-family: 'Work Sans', sans-serif;
+            font-size: 20px;
+        }
+
+        .information{
+            font-family: 'Work Sans', sans-serif;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<br>
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+    <h2>update post</h2>
+
+    <small>Based on {{post.base_title}}</small><hr>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Title</label>
+        <input name="title" class="form-control form-control-sm" type="text" value="{{post.title}}"/>
+        <label>Content</label>
+        <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="13">{{post.body}}</textarea>
+        <input type="hidden" name="base_id" value="{{post.base_id}}"/>
+        <input type="hidden" name="base_title" value="{{post.base_title}}"/>
+        <br>
+        <button type="submit" class="btn btn-secondary">Edit</button>
+    </form>
+
+    <hr>
+    {% else %}
+    <strong>Wrong Access</strong>
+    {% endif %}
+{% endif %}
+
+{% endblock %}

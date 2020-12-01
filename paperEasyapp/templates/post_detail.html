@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,300&display=swap');
+        body{
+          background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          font-family: 'Work Sans', sans-serif;
+        }
+        .post_title{
+            background-color: rgba( 255, 255, 255, 0.3 );
+            font-family: 'Work Sans', sans-serif;
+            font-size: 20px;
+        }
+
+        .information{
+            font-family: 'Work Sans', sans-serif;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+         <br>
+        <div class="post_title" style="box-shadow:4px 4px 8px #000808;">
+            <h2>{{ post.title }}</h2>
+        </div>
+
+        <small class="information">
+            {{ post.publish }} | {{ post.author }}
+
+            {% if user.id == post.author.id %}
+                <a href="{% url 'update_post' post.pk %}"> (Edit) </a>
+                <a href="{% url 'delete_post' post.pk %}"> (Delete) </a>
+            {% endif %}
+
+            <br> Reference <a href = "{% url 'third' %}?theid={{post.base_id}}">{{ post.base_title }}</a>
+
+        </small>
+
+        <hr>
+            {{ post.body }}
+        <hr>
+    <div class="comment" >
+        <h3 style="background-color: rgba( 255, 255, 255, 0.3 ); box-shadow:4px 4px 8px #000808;">Comments..</h3>
+        {% if not post.comments.all %}
+            No Comments yet...
+            {% if user.is_authenticated %}
+                <br>
+        <br>
+                <a href="{% url 'create_comment' post.pk %}" style="box-shadow:4px 4px 8px #000808;  background-color: #A2C9D9;">&nbspAdd one&nbsp</a>
+            {% endif %}
+
+        {% else %}
+            {% for comment in post.comments.all %}
+            <strong style="background-color: rgba( 255, 255, 255, 0.3 ); position: relative; margin-left: 20px;">
+                {{ comment.name }} - {{ comment.date_added }}
+            </strong>
+             {% if user.id == comment.name.id %}
+                <a href="{% url 'update_comment' comment.pk %}"> (Edit) </a>
+                <a href="{% url 'delete_comment' comment.pk %}"> (Delete) </a>
+            {% endif %}
+            <br>
+            <div style="position: relative; margin-left: 23px;">
+                {{ comment.body }}
+            <br>
+            </div>
+            {% endfor %}
+
+        {% if user.is_authenticated %}
+            <br>
+
+            <a href="{% url 'create_comment' post.pk %}" style="box-shadow:4px 4px 8px #000808;  background-color: #A2C9D9; ">&nbspAdd Comment&nbsp</a><br>
+        {% endif %}
+        <hr>
+
+        {% endif %}
+    </div>
+</body>
+{% endblock %}

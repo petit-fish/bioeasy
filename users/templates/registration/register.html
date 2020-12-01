@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+        PaperEasy_register
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+    body{
+      background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+</style>
+    <br>
+    <h1 style="font-family: 'Caveat', cursive; color: gray; background-color: rgba( 255, 255, 255, 0.3 ); box-shadow:4px 4px 8px #000808;text-align: center;">Welcome to BIOEasy!</h1>
+    <h2 style="font-family: 'Caveat', cursive; font-size: 33px; text-align: center;">Register</h2>
+    <hr>
+
+    <div class="form-group" style="font-family: 'Caveat', cursive;">
+        <form method="POST">
+            {% csrf_token %}
+
+            <!--https://getbootstrap.com/docs/4.5/components/forms/ 에서 참조했습니다 -->
+
+            <p><label for="id_username" style="font-size: 23px;">Username:</label> <input type="text" name="username" maxlength="150" autofocus class="form-control" required id="id_username" style="height: 30px; background-color: rgba( 255, 255, 255, 0.8 );"> <span class="helptext">&nbsp Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></p>
+            <p><label for="id_email" style="font-size: 23px;">Email:</label> <input type="email" name="email" class="form-control" required id="id_email" style="height: 30px; background-color: rgba( 255, 255, 255, 0.8 );"></p>
+            <p>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="id_first_name" style="font-size: 23px;">First name:</label> <input type="text" name="first_name" class="form-control" maxlength="100" required id="id_first_name" style="height: 30px; background-color: rgba( 255, 255, 255, 0.8 );">
+                    </div>
+                    <div class="col">
+                        <label for="id_last_name" style="font-size: 23px;">Last name:</label> <input type="text" name="last_name" class="form-control" maxlength="100" required id="id_last_name" style="height: 30px; background-color: rgba( 255, 255, 255, 0.8 );">
+                    </div>
+                </div>
+            </p>
+            <p><label for="id_password1" style="font-size: 23px;">Password:</label> <input type="password" name="password1" autocomplete="new-password" class="form-control" required id="id_password1" style="height: 30px; background-color: rgba( 255, 255, 255, 0.8 );"> <span class="helptext"><ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul></span></p>
+            <p><label for="id_password2" style="font-size: 23px;">Password confirmation:</label> <input type="password" name="password2" autocomplete="new-password" class="form-control" required id="id_password2" style="height: 30px; background-color: rgba( 255, 255, 255, 0.8 );"> <span class="helptext">&nbsp Enter the same password as before, for verification.</span></p>
+
+
+
+            <button class="btn btn-secondary" style="font-size: 23px; color: black; background-color: #A2C9D9; box-shadow:4px 4px 8px #000808;border: 0px; position: relative; margin-left: 1020px; height: 45px;">Register</button>
+        </form>
+    </div>
+
+
+{% endblock %}

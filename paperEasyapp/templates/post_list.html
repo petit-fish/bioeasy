@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,300&display=swap');
+        body{
+          background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <h2 style="font-family: 'Caveat', cursive; font-size: 42px; background-color: rgba( 255, 255, 255, 0.3 ); box-shadow:4px 4px 8px #000808; text-align: center;">community</h2>
+    <hr>
+
+    {% for post in object_list %}
+
+        <a href="{% url 'post_detail' post.pk %}" style="font-family: 'Work Sans', sans-serif; font-size: 22px;">{{post.title}}</a>
+        <small style="font-family: 'Work Sans', sans-serif; font-size: 12px;">
+            <br>{{post.publish}} | {{post.author}}
+            <br>Reference {{post.base_title}}
+            <br>
+        </small>
+    <hr>
+    {% endfor %}
+
+</body>
+
+{% endblock %}

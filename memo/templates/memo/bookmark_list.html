@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %} Bookmark {% endblock %}
+
+{% block content %}
+<style type="text/css">
+     @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+    body{
+      background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    #modify_button{
+        font-family: 'Caveat', cursive;
+        font-size: 15px;
+        box-shadow:3px 3px 6px #000808;
+        background-color: #7BB3CA;
+        color: black;
+
+    }
+    #delete_button{
+        font-family: 'Caveat', cursive;
+        font-size: 15px;
+        box-shadow:3px 3px 6px #000808;
+        background-color: #7BB3CA;
+        color: black;
+        border: 0px;
+    }
+</style>
+    <br>
+    <p></p>
+    <table class = "table">
+        <thead>
+            <tr>
+                <th scope = "col" style="font-family: 'Caveat', cursive; box-shadow:2px 2px 6px #000808; font-size: 20px; text-align: center; background-color: rgba( 255, 255, 255, 0.3 );">Title</th>
+                <th scope = "col" style="font-family: 'Caveat', cursive; box-shadow:2px 2px 6px #000808; font-size: 20px; text-align: center; background-color: rgba( 255, 255, 255, 0.3 );">URL</th>
+                <th scope = "col" style="font-family: 'Caveat', cursive; box-shadow:2px 2px 6px #000808; font-size: 20px; text-align: center; background-color: rgba( 255, 255, 255, 0.3 );">Modify</th>
+                <th scope = "col" style="font-family: 'Caveat', cursive; box-shadow:2px 2px 6px #000808; font-size: 20px; text-align: center; background-color: rgba( 255, 255, 255, 0.3 );">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bookmark in object_list %}
+            <tr>
+
+                {% if user.id == bookmark.author.id %}
+                <td>{{bookmark.site_name}}</td>
+                <td><a href="{{bookmark.url}}" target="_blank" >{{bookmark.url}}</a></td>
+                <td><a href="{% url 'update' pk=bookmark.id %}" id='modify_button' class="btn btn-success btn-sm">Modify</a></td>
+                <td><a href="{% url 'delete' pk=bookmark.id %}" id='delete_button' class="btn btn-success btn-sm">Delete</a></td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block pagination %}
+{% if is_paginated %}
+<ul class="pagination justify-content-center pagination-sm">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="{% url 'list' %}?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    {% endif %}
+
+    {% for object in page_obj.paginator.page_range %}
+    <li class="page-item {% if page_obj.number == forloop.counter %} disabled {% endif %} ">
+        <a class="page-link" href="{{ request.path }}?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+    </li>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="{% url 'list' %}?page={{ page_obj.next_page_number }}">Next</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" href="#">Next</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
+{% endblock %}

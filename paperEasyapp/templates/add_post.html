@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,300&display=swap');
+        body{
+          background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          font-family: 'Work Sans', sans-serif;
+        }
+        .post_title{
+            background-color: rgba( 255, 255, 255, 0.3 );
+            font-family: 'Work Sans', sans-serif;
+            font-size: 20px;
+        }
+
+        .information{
+            font-family: 'Work Sans', sans-serif;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<br>
+<h2 style="box-shadow:3px 3px 15px #000808; background-color: #A2C9D9; text-align:center;">add post</h2>
+
+<small>Based on {{base_title}}</small><hr>
+
+<form action="create" method="POST" class="post-form">
+    {% csrf_token %}
+
+    <label>Title</label>
+    <input name="title" class="form-control form-control-sm" type="text"/>
+    <label>Content</label>
+    <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="13"></textarea>
+
+    <input type="hidden" name="base_id" value="{{base_id}}"/>
+    <input type="hidden" name="base_title" value="{{base_title}}"/>
+    <br>
+    <button type="submit" class="btn btn-secondary" style="box-shadow:3px 3px 15px #000808; border-radius: 0px; color: black; position: fixed; left: 1150px;background-color: #A2C9D9;">Post</button>
+</form>
+
+<hr>
+
+{% endblock %}

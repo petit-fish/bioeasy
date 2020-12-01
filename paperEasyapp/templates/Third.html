@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% block content %}
+<style type="text/css">
+
+	@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+	body{
+	  background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	}
+
+	#main{
+		position: fixed;
+		left: 30px;
+		top: 80px;
+		width:800px;
+		height:650px;
+		box-shadow:2px 2px 5px #000808;
+
+	}
+	.buttons{
+		font-family: 'Caveat', cursive;
+     	font-size: 17px;
+		position: fixed;
+		left: 900px;
+		top: 120px;
+
+	}
+
+	#question_button{
+		position: fixed;
+		left: 870px;
+		top: 140px;
+		border-radius: 12px 12px 0px 0px;
+		height: 35px;
+		background-color: #A2C9D9;
+		box-shadow:4px 4px 8px #000808;
+
+	}
+	#comments_button{
+		position: fixed;
+		left: 930px;
+		top: 140px;
+		border-radius: 12px 12px 0px 0px;
+		height: 35px;
+		background-color: #A2C9D9;
+		box-shadow:4px 4px 8px #000808;
+
+	}
+	#memo_button{
+		position: fixed;
+		left: 874px;
+		top: 140px;
+		border-radius: 12px 12px 0px 0px;
+		height: 35px;
+		background-color: #A2C9D9;
+		box-shadow:4px 4px 8px #000808;
+
+	}
+	.rec_main{
+		position: fixed;
+		left: 850px;
+		top: 80px;
+		width: 400px;
+		height: 650px;
+		background-color: #A2C9D9;
+		z-index: -2;
+		opacity: 0.7;
+
+
+	}
+	.rec_small{
+		position: fixed;
+		width:358px;
+		height: 520px;
+		left: 871px;
+		top: 180px;
+		background-color: white;
+		box-shadow:4px 4px 8px #000808;
+
+	}
+	#graph_button{
+		border-radius: 13px;
+		position: fixed;
+		left: 1010px;
+		top: 100px;
+		font-size: 13px;
+		height: 33px;
+		color: black;
+		background-color: #7BB3CA;
+		box-shadow:2px 2px 5px #000808;
+
+	}
+	#bookmark_button{
+		border-radius: 13px;
+		position: fixed;
+		left: 1140px;
+		top: 100px;
+		height: 33px;
+		font-size: 13px;
+		border: 0px solid;
+		color: black;
+		background-color: #7BB3CA;
+		box-shadow:2px 2px 5px #000808;
+
+	}
+	#question_button{
+		border-radius: 13px;
+		position: fixed;
+		left: 910px;
+		top: 100px;
+		font-size: 13px;
+		border: 0px solid;
+		height: 33px;
+		color: black;
+		background-color: #7BB3CA;
+		box-shadow:2px 2px 5px #000808;
+	}
+	#Board{
+
+		position: fixed;
+		left: 900px;
+		top: 220px;
+		z-index: 3;
+		width: 300px;
+		height: 300px;
+		text-align: left;
+		text-align: top;
+
+
+	}
+	#Comments{
+		position: fixed;
+		left: 900px;
+		top: 220px;
+		z-index: 3;
+		width: 300px;
+		height: 300px;
+		text-align: left;
+		text-align: top;
+	}
+
+	#addmemo_button{
+		border-radius: 13px;
+		position: fixed;
+		left: 1020px;
+		top: 340px;
+		font-size: 13px;
+		border: 0px solid;
+		color: black;
+		background-color: #7BB3CA;
+		box-shadow:2px 2px 5px #000808;
+
+	}
+</style>
+<head>
+	<meta charset="UTF-8">
+	<title>HTML Iframs</title>
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script language="javascript">
+		function ShowTable(wtable){
+		 eval(wtable).style.display="";
+		}
+		function HideTable(wtable){
+		 eval(wtable).style.display="none";
+		}
+		function add_memo(){
+			window.open('memo/', '', 'width=400, height=200, left=900, top=150');
+		}
+		function add_bookmark(){
+			window.open('bookmark/add/', '', 'width=440, height=200, left=900, top=150');
+		}
+
+	</script>
+
+
+</head>
+
+<body>
+
+<iframe src={{link_toReader}} id="main"></iframe>
+<div class="rec_main">
+
+</div>
+<div class="rec_small">
+
+</div>
+<div class="buttons">
+	{% if user.is_authenticated %}
+		<input type="hidden" name="thetitle" value="{{titles}}"/>
+		<input type="button" id='bookmark_button' class="btn btn-secondary" value="Add bookmark" onclick="add_bookmark()">
+	{% endif %}
+	<form action="keywordToGraph" method=GET>
+		<input type="hidden" name="theid" value="{{pmcID}}"/>
+		<button class="btn btn-link" id='graph_button' type="submit">See Knowledge Graph</button>
+	</form>
+	<form action="add" method=GET>
+			<input type="hidden" name="theid" value="{{pmcID}}"/>
+			<button class="btn btn-link" id='question_button' type="submit">Add a question</button>
+
+	</form>
+	<input type="button" id='comments_button' value="Other's questions" onclick="ShowTable('Comments');HideTable('Memo');HideTable('Board');">
+
+	<input type="button" id='memo_button' value="Memo" onclick="ShowTable('Memo');HideTable('Comments');HideTable('Board');">
+
+
+	<form name = form>
+	<table id="Memo" style="display:none;">
+		<tr>
+		 <td>
+			 <br>
+			{% if user.is_authenticated %}
+
+			 <input type="hidden" id="theid" value="{{pmcID}}">
+			 <input type="button" id= 'addmemo_button' class="btn btn-secondary" value="add memo" onclick="add_memo()">
+
+			<br>
+			 {% for memo in memos %}
+				{% if memo.name.id == user.id %}
+					<hr>
+					<a href="{% url 'delete_memo' memo.pk %}"> (Delete) </a>
+			 		<br>
+			 		{{memo.body}}
+
+				{% endif %}
+			{% endfor %}
+
+			 {% endif %}
+
+			 </iframe>
+			</td>
+		</tr>
+	</table>
+
+	<table id="Comments" style="display:none;">
+		<tr>
+		 <td>
+			 <br>
+	<h3>Check Other User's Questions...</h3>
+	<br>
+	{% for post in posts %}
+		<a href="{% url 'post_detail' post.pk %}">{{post.title}}</a>
+		<small>
+			<br>{{post.publish}} | {{post.author}}
+			<br>
+		</small><hr>
+	{% endfor %}
+	<br>
+			 </iframe></td>
+		</tr>
+	</table>
+
+	</form>
+</div>
+<br><br><br>
+</body>
+
+</html>
+{% endblock %}

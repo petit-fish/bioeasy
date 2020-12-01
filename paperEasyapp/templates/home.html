@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- 홈페이지에 들어갈 코드-->
+<head>
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+    body{
+      background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: #e577ff;
+    }
+
+    #rec_1{
+        position: fixed;
+        width: 233.6px;
+        height: 235.1px;
+        left: 38.7px;
+        top: 150px;
+        opacity: 0.7;
+        border-radius: 51px;
+        border: solid 1px #ffffff;
+        transform: rotate(20deg);
+        background-color: #62ddcd;
+        box-shadow:10px 10px 5px #000808;
+    }
+
+    #rec_2{
+      position: fixed;
+      width: 233.6px;
+      height: 235.1px;
+      left: 288.7px;
+      top: 90px;
+      border-radius: 51px;
+      border: solid 1px #ffffff;
+      transform: rotate(20deg);
+      background-color: #62ddcd;
+      opacity: 0.7;
+      box-shadow:10px 10px 5px #000808;
+    }
+    #rec_3{
+      position: fixed;
+      width: 233.6px;
+      height: 235.1px;
+      left: 208.7px;
+      top: 290px;
+      border-radius: 51px;
+      border: solid 1px #ffffff;
+      transform: rotate(20deg);
+      background-color: #62ddcd;
+      opacity: 0.7;
+      box-shadow:10px 10px 5px #000808;
+    }
+    #titleText_1{
+      font-family: 'Permanent Marker', cursive;
+      font-size: 60px;
+      position: fixed;
+      left: 70px;
+      top: 220px;
+    }
+    #titleText_2{
+      font-family: 'Permanent Marker', cursive;
+      font-size: 30px;
+      position: fixed;
+      left: 85px;
+      top: 310px;
+    }
+
+    #searchTerm{
+      font-family: 'Caveat', cursive;
+      font-size: 37px;
+      text-align:center;
+      width: 550px;
+      height: 60px;
+      position: fixed;
+      top: 165px;
+      left: 700px;
+      border-top: none;
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
+      background-color: ##A2C9D9;
+      border-radius: 11px;
+      box-shadow:10px 10px 30px #000808;
+
+
+
+    }
+    #real_half{
+      position: fixed;
+      background-color: #A2C9D9;
+      width: 660px;
+      height: 800px;
+      position: fixed;
+      left: 630px;
+      top: -100px;
+      box-shadow:3px 3px 15px #000808;
+      z-index: -8;
+
+    }
+
+
+    #half_background{
+      position: fixed;
+      top: 70px;
+      background-color: white;
+      width: 660px;
+      height: 40%;
+      border-radius: 11px;
+      position: fixed;
+      opacity: 0.2;
+      left: 630px;
+      z-index:-3;
+    }
+
+
+    #seminarStart{
+      position: fixed;
+      top: 360px;
+      left: 680px;
+      font-family: 'Caveat', cursive;
+      font-size: 27px;
+      color: black;
+    }
+
+    #bio1{
+      position: fixed;
+      top: 425px;
+      left: 680px;
+      width: 135px;
+      height: 135px;
+      background-color: black;
+      box-shadow:10px 10px 10px #000808;
+
+    }
+
+    #bio1title{
+      font-family: 'Caveat', cursive;
+      font-size: 16px;
+      width:120px;
+      position:fixed;
+      left: 830px;
+      top: 430px;
+    }
+
+    #bio2{
+      position: fixed;
+      top: 425px;
+      left: 980px;
+      width: 135px;
+      height: 135px;
+      background-color: black;
+      box-shadow:10px 10px 10px #000808;
+
+    }
+
+    #bio2title{
+      font-family: 'Caveat', cursive;
+      font-size: 16px;
+      width:120px;
+      position:fixed;
+      left: 1130px;
+      top: 430px;
+    }
+
+    #justline{
+      width:200px;
+      height:3px;
+      position:fixed;
+      left:660px;
+      top:350px;
+      background-color: white;
+      box-shadow:10px 10px 30px #000808
+    }
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <div id="rec_1">
+  </div>
+
+  <div id="rec_2">
+  </div>
+
+  <div id="rec_3">
+  </div>
+
+  <div id = 'real_half'>
+
+  </div>
+
+  <div id="half_background">
+    </div>
+
+    <div id="seminarStart">
+    "Bio seminars for 2020"
+    </div>
+    <a href="https://globalcancermeet.com/">
+    <img id="bio1" src="https://c1.10times.com/images/event/500196/eventlogo-28-1590479098.jpg"> </a>
+    <a href="https://globalcancermeet.com/" id="bio1title">
+    <div>
+      Virtual Online Conference on Molecular Biology, Genetics & Cancer Research
+    </div>
+    <div style="font-size:14px;">
+      ( 8 - 10 Dec 2020 )
+    </div>
+    </a>
+    <a href="https://www.embl.de/training/events/2020/ISS20-01/">
+      <img id="bio2" src="https://cdn4.euraxess.org/sites/default/files/styles/news_and_events_details/public/events/embo_logo_tagline_narrow_cmykblack_outlined_2.jpg?itok=SplDOVaH">
+    </a>
+    <a href="https://www.embl.de/training/events/2020/ISS20-01/" id="bio2title">
+      <div>
+        EMBL Conference: In situ Structural Biology - From Cryo-EM to Integrative Modelling
+      </div>
+      <div style="font-size:14px;">
+        ( 6 - 8 Dec 2020 )
+      </div>
+    </a>
+
+  <div id="titleText_1">
+    With BIOEasy,
+  </div>
+  <div id="titleText_2">
+    You can be the best BIO researcher.
+  </div>
+
+
+
+  <div>
+    <form name="passUserinput" action="second" method=GET>
+      <input type="text" name="userTextInput" class="searchTerm" id="searchTerm" placeholder="What are you looking for?" >
+
+    </form>
+  </div>
+
+  <div id="justline">
+
+  </div>
+
+
+
+  </a>
+
+
+
+</body>
+
+{% endblock %}
+
+
+
