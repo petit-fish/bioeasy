@@ -48,7 +48,7 @@
      
    - Memo (메모 기능) : 등록된 사용자의 경우 각 논문 별로 간단하게 메모를 작성하여 남겨둘 수 있는 기능을 구현했습니다. 해당 논문을 조회하고 있을 시에 이전에 작성해둔 메모들을 조회할 수 있도록 하였습니다.
      
--
+
  
 # 3) 구현 내용
    개발환경은 다음과 같습니다.
@@ -57,7 +57,7 @@
    
    전체 HTML 구성도는 아래와 같습니다.
 
-![KakaoTalk_20201206_195701513](https://user-images.githubusercontent.com/66764321/101278681-7fc98200-3800-11eb-87e8-d37709c3bb09.png)
+![KakaoTalk_20201206_195619036](https://user-images.githubusercontent.com/66764321/101278721-cdde8580-3800-11eb-839b-cdec6cf51a01.png)
 
         
    ### home.html
