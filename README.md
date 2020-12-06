@@ -31,7 +31,7 @@
 ![KakaoTalk_20201206_195551513](https://user-images.githubusercontent.com/66764321/101278286-b6ea6400-37fd-11eb-86d1-ba92a32a0640.png)   
    [Pubmed NCBI]
 
--
+
 
 # 2) BIOEASY에서 제공하는 기능
 ![KakaoTalk_20201206_195559845](https://user-images.githubusercontent.com/66764321/101278325-e5683f00-37fd-11eb-97ea-df667a01dfdf.png)
@@ -131,15 +131,13 @@
     third.html의 bookmark_create.html을 통해 추가된 현재 사용자의 모든 북마크들이 모여있는 곳입니다. user의 id와 bookmark의 author의 id를 대조하여 필터링하여 오브젝트들을 나열합니다.
      
  
--
- 
 # 4) 프로젝트 진행 상황 및 향후 계획
    (2020.12) 
     기획했던 모든 기능을 구현 완료하였으며, 웹페이지 디자인을  완성했습니다.
     BIOEASY는 현재 한국 저작권 위원회에 SW 저작권을 보유한 상태이며, 특허 출원을 완료했습니다.
     사업자 등록 역시 완료하여, 본격적으로 사업을 진행할 예정입니다. 
         인지, 공감 마케팅을 통해 더 많은 신규 회원을 유입할 수 있도록 노력하겠습니다!
-     -
+     
      
 # 5) Reference
  
